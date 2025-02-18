@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Details</title>
+    <link rel="icon" type="image/png" href="/transparent-x.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        
+        html, body {
+            background: #1f1f1f;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            color: white;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .ticket-info {
+            background: #303030;
+            width: 80%;
+            height: 40%;
+            padding: 2vh 4vw;
+            border-radius: 20px;
+            margin-top: 2vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        .event-info {
+            width: 80%;
+        }
+
+        h2 {
+            margin: 3vh 0 0 0;
+            font-size: 6vw;
+        }
+
+        .hr-line {
+            width: 60%;
+            margin: 2vh 0;
+            background: #ccc;
+            border: #ccc 1px solid;
+        }
+
+        p {
+            margin: 0 0 .5vh 0;
+        }
+
+        .uuid {
+            margin-top: auto;
+            font-size: 2.5vw;
+            padding-top: 10px;
+        }
+
+        #redeem-button {
+            background: #1f1f1f;
+            border: 1px solid white;
+            color: white;
+            padding: 1.5vh 0;
+            width: 60%;
+            cursor: pointer;
+            margin: 5vh auto auto auto;
+            font-family: inherit;
+            font-weight: 700;
+            border-radius: 10px;
+        }
+
+        #redeem-button:active {
+            color: #1f1f1f;
+            background: white;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        svg {
+            width: 48px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-info">
+        <h2>Lístek je platný</h2>
+        <hr class="hr-line">
+        <p>{{type}}</p>
+        {{table_num}}
+        {{name}}
+        <button id="redeem-button" onclick="areYouSure()" data-uuid="{{uuid}}">Redeem ticket</button>
+        <span class="uuid"><strong>UUID:</strong> {{uuid}}</span>
+    </div>
+    <div class="event-info">
+        <h1>Maturitní ples Humpolec</h1>
+        <ul>
+            <li>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3 18C3 15.3945 4.66081 13.1768 6.98156 12.348C7.61232 12.1227 8.29183 12 9 12C9.70817 12 10.3877 12.1227 11.0184 12.348C11.3611 12.4703 11.6893 12.623 12 12.8027C12.3107 12.623 12.6389 12.4703 12.9816 12.348C13.6123 12.1227 14.2918 12 15 12C15.7082 12 16.3877 12.1227 17.0184 12.348C19.3392 13.1768 21 15.3945 21 18V21H15.75V19.5H19.5V18C19.5 15.5147 17.4853 13.5 15 13.5C14.4029 13.5 13.833 13.6163 13.3116 13.8275C14.3568 14.9073 15 16.3785 15 18V21H3V18ZM9 11.25C8.31104 11.25 7.66548 11.0642 7.11068 10.74C5.9977 10.0896 5.25 8.88211 5.25 7.5C5.25 5.42893 6.92893 3.75 9 3.75C10.2267 3.75 11.3158 4.33901 12 5.24963C12.6842 4.33901 13.7733 3.75 15 3.75C17.0711 3.75 18.75 5.42893 18.75 7.5C18.75 8.88211 18.0023 10.0896 16.8893 10.74C16.3345 11.0642 15.689 11.25 15 11.25C14.311 11.25 13.6655 11.0642 13.1107 10.74C12.6776 10.4869 12.2999 10.1495 12 9.75036C11.7001 10.1496 11.3224 10.4869 10.8893 10.74C10.3345 11.0642 9.68896 11.25 9 11.25ZM13.5 18V19.5H4.5V18C4.5 15.5147 6.51472 13.5 9 13.5C11.4853 13.5 13.5 15.5147 13.5 18ZM11.25 7.5C11.25 8.74264 10.2426 9.75 9 9.75C7.75736 9.75 6.75 8.74264 6.75 7.5C6.75 6.25736 7.75736 5.25 9 5.25C10.2426 5.25 11.25 6.25736 11.25 7.5ZM15 5.25C13.7574 5.25 12.75 6.25736 12.75 7.5C12.75 8.74264 13.7574 9.75 15 9.75C16.2426 9.75 17.25 8.74264 17.25 7.5C17.25 6.25736 16.2426 5.25 15 5.25Z" fill="#ffffff"></path> </g></svg>
+                4.IT a 4.O
+            </li>
+            <li>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16 13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                14.2.2025 <br>
+                17:00 - 02:00
+            </li>
+            <li>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                Spolkový dům Humpolec
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    const redeemButton = document.getElementById('redeem-button');
+    let timeout;
+    const uuid = document.getElementById('redeem-button').getAttribute('data-uuid');
+    
+    function areYouSure() {
+        redeemButton.innerText = "Are you sure?";
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(function() {
+            redeemButton.innerText = "Redeem ticket";
+            redeemButton.removeEventListener('click', confirmAction);
+        }, 2500);
+
+        redeemButton.addEventListener('click', confirmAction);
+    }
+
+    function confirmAction() {
+        fetch('/redeem_ticket', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ uuid: uuid })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();
+            } else {
+                alert("Action failed :(");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("There was an error with the action.");
+        })
+    }
+</script>
+
+</html>
